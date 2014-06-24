@@ -1,0 +1,88 @@
+@media only screen and (min-width: 961px) and (max-width: 1024px) {
+.middle{ margin-top:140px;}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 960px) {
+.container {width:98%;}
+.mainpopup{ width:55%;}
+.contpage{ background-position:right center;}
+.banimg{ width:100%;}
+.bantxt{width:100%; position:static;}
+.usepageimg{width:100%; text-align:center;}
+.usepagetxt{width:100%;}
+.create_poll{ width:32%; background:#0377d5; border:1px solid #0369bb; height:inherit; text-align:center; padding:10px 0 10px 0px;}
+.visibility{width:32%; background:#edeeee; border:1px solid #d4d4d4; margin-left:1%; padding:10px 0 10px 0px; height:inherit; text-align:center;}
+.payment{width:32%; background:#edeeee; border:1px solid #d4d4d4; margin-left:1%; padding:10px 0 10px 0px; height:inherit; text-align:center;}
+.visactive{background:#0377d5; border:1px solid #0369bb;}
+.payactive{background:#0377d5; border:1px solid #0369bb;}
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {width:98%;}
+.appcol{width:100%; text-align:center;}
+.appcoltxt{width:100%; margin:0px;}
+.colthree{width:98%;}
+.footcol{width:97%;}
+.footcolrig{width:97%;}
+.mainpopup{ width:55%;}
+.selmonth{ width:100%; margin:0px 0px 10px 0px;}
+.contpage{ background:none;}
+.listcol li{ margin-right:0px; width:100%}
+.banimg{ width:100%;}
+.bantxt{width:100%; position:static;}
+.bluebox{ width:auto;}
+.bluelef{ width:100%;}
+.bluerig{ width:100%;}
+.pointbox{ float:left;}
+.usepageimg{width:100%; text-align:center;}
+.usepagetxt{width:100%;}
+.wintxt{width:100%;}
+.nav_btn a:first-child{ margin-right:10px;}
+.navigation{margin-right:10px;}
+.create_poll{ width:32%; background:#0377d5; border:1px solid #0369bb; height:inherit; text-align:center; padding:10px 0 10px 0px;}
+.visibility{width:32%; background:#edeeee; border:1px solid #d4d4d4; margin-left:1%; padding:10px 0 10px 0px; height:inherit; text-align:center;}
+.payment{width:32%; background:#edeeee; border:1px solid #d4d4d4; margin-left:1%; padding:10px 0 10px 0px; height:inherit; text-align:center;}
+.visactive{background:#0377d5; border:1px solid #0369bb;}
+.payactive{background:#0377d5; border:1px solid #0369bb;}
+.rowfifty{ width:100%; margin-left:0px !important;}
+.range{ width:85%;}
+.footer{ display:none;}
+.footerbtn{ display:block;}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 479px) {
+.container {width:98%;}
+.appcol{ width:100%; text-align:center;}
+.appcoltxt{width:100%; margin:0px;}
+.colthree{ width:98%;}
+.footcol{width:97%;}
+.footcolrig{width:97%;}
+.mainpopup{ width:78%;}
+.selmonth{ width:100%; margin:0px 0px 10px 0px;}
+.contpage{ background:none;}
+.listcol li{ margin-right:0px; width:100%}
+.banimg{ width:100%;}
+.bantxt{width:100%; position:static;}
+.bluebox{ width:auto;}
+.bluelef{ width:100%;}
+.bluerig{ width:100%;}
+.pointbox{ float:none; margin:0 auto;}
+.usepageimg{width:100%; text-align:center;}
+.usepagetxt{width:100%;}
+.wintxt{width:100%;}
+.nav_btn a:first-child{ margin-right:10px;}
+/*.navigation{margin-right:10px; position:absolute; top:10px; right:0px;}
+.nav{ position:relative;}*/
+.middle{ margin-top:55px;}
+.heder_rig{ margin-top:0px;}
+.create_poll{ width:99%; background:#0377d5; border:1px solid #0369bb; height:inherit; text-align:center; padding:10px 0 10px 0px;}
+.visibility{width:99%; background:#edeeee; border:1px solid #d4d4d4; padding:10px 0 10px 0px; height:inherit; text-align:center; margin:10px 0px 0px 0px;}
+.payment{width:99%; background:#edeeee; border:1px solid #d4d4d4; padding:10px 0 10px 0px; height:inherit; text-align:center; margin:10px 0px 0px 0px;}
+.visactive{background:#0377d5; border:1px solid #0369bb;}
+.payactive{background:#0377d5; border:1px solid #0369bb;}
+.rowfifty{ width:100%; margin-left:0px !important;}
+.range{ width:85%;}
+.footer{ display:none;}
+.footerbtn{ display:block;}
+.logo{ display:none;}
+}

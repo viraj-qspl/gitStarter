@@ -1,0 +1,125 @@
+﻿.r-tabs {
+	position: relative;
+}
+
+.r-tabs .r-tabs-nav {
+	border-bottom: 1px solid #ccc;
+}
+
+.r-tabs .r-tabs-nav .r-tabs-tab {
+	position: relative;
+	top: 1px;
+}
+
+.r-tabs .r-tabs-nav .r-tabs-anchor {
+	background:#FFFFFF;
+	margin-bottom: 3px;
+	padding:8px 15px;
+	display: inline-block;
+	text-decoration: none;
+	color: #394860;
+	font-size:14px;
+}
+
+.r-tabs .r-tabs-nav .r-tabs-state-active {
+	background-color: #fff;
+	/*margin-bottom: -1px;*/
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+
+.r-tabs .r-tabs-nav .r-tabs-state-disabled {
+	opacity: 0.5;
+}
+
+.r-tabs .r-tabs-nav .r-tabs-state-active .r-tabs-anchor {
+	color:#0377d5;
+	background-color:#fff;
+}
+
+.r-tabs .r-tabs-panel {
+	/*border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;*/
+	margin-bottom: 3px;
+	background: url(../images/spacer.png) repeat;
+}
+
+.r-tabs .r-tabs-accordion-title .r-tabs-anchor {
+	display: block;
+	padding: 10px;
+	background-color: #edeeee;
+	border:1px solid #d4d4d4;
+	/*background: url(../images/spacer1.png) repeat;*/
+	/*font-size:18px;*/
+	color: #474747;
+	/*font-weight: bold;*/
+	text-decoration: none;
+	margin-bottom: 3px;
+}
+
+.r-tabs .r-tabs-accordion-title.r-tabs-state-disabled {
+	opacity: 0.5;
+}
+
+.r-tabs .r-tabs-accordion-title.r-tabs-state-active .r-tabs-anchor {
+	background-color: #fff;
+	color: #0377d5;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+	margin-bottom: 0;
+	/*background: url(../images/spacer.png) repeat;*/
+}
+
+
+
+.r-tabs .r-tabs-nav {
+    margin: 0;
+    padding: 0;
+	width:100%;
+	float:left;
+}
+
+.r-tabs .r-tabs-tab {
+    /*display: inline-block;*/
+	float:left;
+    margin: 0;
+    list-style: none;
+	margin-right:1px;
+	margin-left:15px;
+}
+
+.r-tabs .r-tabs-panel {
+    /*padding: 25px 15px 10px 15px;*/
+    display: none;
+	color:#FFFFFF;
+	line-height:21px;
+	float:left;
+	width:100%;
+}
+
+.r-tabs .r-tabs-accordion-title {
+    display: none;
+}
+
+.r-tabs .r-tabs-panel.r-tabs-state-active {
+    display: block;
+}
+
+div.r-tabs-accordion-title a.r-tabs-anchor{background:url(../images/tabdown.png) rgba(238, 238, 238, 0.9) 97% 12px no-repeat !important;}
+div.r-tabs-state-active a.r-tabs-anchor{ background:url(../images/tabup.png) rgba(238, 238, 238, 0.9) 97% 12px no-repeat !important;}
+/* Accordion responsive breakpoint */
+@media only screen and (max-width: 768px) {
+    .r-tabs .r-tabs-nav {
+        display: none;
+    }
+
+    .r-tabs .r-tabs-accordion-title {
+        display: block;
+		width:100%;
+		float:left;
+    }
+	.maintab{ padding-left:10px; padding-right:10px;}
+}
