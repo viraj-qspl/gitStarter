@@ -1053,7 +1053,7 @@ public function updateSkipLogic($id,$question,$answers,$dependentQuestions) {
 		$this->db->update($this->config->item('tbl_pollPayments','dbtables'),array('status'=>'COMPLETE'));
 		
 		$this->db->where('id',$pollId);
-		$this->db->update($this->config->item('tbl_poll','dbtables'),array('pollPackage_id'=>$package,'status'=>'PUBLISHED'));
+		$this->db->update($this->config->item('tbl_poll','dbtables'),array('poll_package_id'=>$package,'status'=>'PUBLISHED'));
 		
 		return;
 

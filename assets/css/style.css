@@ -333,3 +333,11 @@ label img {
 	cursor:pointer;
 	text-decoration:none;
 }
+
+#success_message {
+	color: #3C3;
+	font-weight: bold;
+	font-family: "DroidSans";
+	font-size: 19px;
+	margin: 10px 0px;
+}

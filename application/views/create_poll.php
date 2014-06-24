@@ -7,12 +7,23 @@
 </style>
 
 <?php
+
+
 if ($action == SELECT_TYPE) {
     ?>
 
 
     <div class="middle">
         <div class="container">
+		<?php if(trim($this->session->userdata('scs_msg'))!='') { ?>
+		<div id="success_message">
+		<?php
+			echo $this->session->userdata('scs_msg');
+			$this->session->unset_userdata('scs_msg');
+		?>
+		</div> <?php } ?>
+		
+		
             <div class="innerpage pollreg">
                 <h1>Create Poll</h1>
                 <div class="steppoll">
@@ -962,12 +973,15 @@ if ($action == SELECT_TYPE) {
 
 
                 <?php
+				
+				
                 foreach ($ageGroup as $key => $value) {
                     $checked = false;
 
+					
 
                     foreach ($ageGroupFilter as $k => $v) {
-                        if ($v->ageGroup_id == $value->id) {
+                        if ($v->age_group_id == $value->id) {
                             $checked = true;
                             break;
                         }
@@ -1103,7 +1117,7 @@ if ($action == SELECT_TYPE) {
 
         $checked = false;
         foreach ($familyStatusFilter as $k => $v) {
-            if ($v->familyStatus_id == $value->id) {
+            if ($v->family_status_id == $value->id) {
                 $checked = true;
                 break;
             }
@@ -1159,7 +1173,7 @@ if ($action == SELECT_TYPE) {
                                             foreach ($income as $key => $value) {
                                                 $checked = false;
                                                 foreach ($incomeGroupFilter as $k => $v) {
-                                                    if ($v->incomeGroup_id == $value->id) {
+                                                    if ($v->income_group_id == $value->id) {
                                                         $checked = true;
                                                         break;
                                                     }
@@ -1187,7 +1201,7 @@ if ($action == SELECT_TYPE) {
                                     foreach ($jobFunction as $key => $value) {
                                         $checked = false;
                                         foreach ($jobFunctionFilter as $k => $v) {
-                                            if ($v->jobFunction_id == $value->id) {
+                                            if ($v->job_function_id == $value->id) {
                                                 $checked = true;
                                                 break;
                                             }
@@ -1215,7 +1229,7 @@ if ($action == SELECT_TYPE) {
                                             foreach ($jobStatus as $key => $value) {
                                                 $checked = false;
                                                 foreach ($jobStatusFilter as $k => $v) {
-                                                    if ($v->jobStatus_id == $value->id) {
+                                                    if ($v->job_status_id == $value->id) {
                                                         $checked = true;
                                                         break;
                                                     }
@@ -1290,14 +1304,14 @@ if ($action == SELECT_TYPE) {
                 </div>
             </div>
 
-        </div>
+        
                                     <?php
                                     echo form_submit(array('name' => 'Submit', 'value' => 'Submit', 'class' => 'bluebtn', 'style' => 'margin-bottom:30px'));
                                     echo form_close();
                                     ?>	
 
-    </div>		
-
+			</div>		
+		</div>
                                         <?php
                                     } elseif ($action == FILTERQUES) {
                                         ?>
@@ -1847,7 +1861,7 @@ if ($action == SELECT_TYPE) {
 
                     </ul>
                     <p><strong>Note:</strong> Price given is without VAT</p>
-                    <p><?php echo form_submit(array('name' => 'submit', 'value' => "Publish", 'class' => 'bluebtn')); ?></p>  
+                    <p><?php echo form_submit(array('name' => 'savepay_submit', 'value' => "Publish", 'class' => 'bluebtn')); ?></p>  
                 <?php echo form_close(); ?>
                 </div>
             </div>

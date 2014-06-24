@@ -40,6 +40,8 @@ class Poll extends CI_Controller {
 		'test_mode' => $this->config->item('test_mode')
 		);
 
+		
+		
 		$this->merchant->initialize($settings);
 
 		$settings =  $this->merchant->settings();
@@ -1096,9 +1098,10 @@ function updateFilterQuestion($id,$pollId) {
 	$packageInfo = $this->poll_model->getPackageInfo($package);
 	
 	$amount = $packageInfo->amount - ($packageInfo->amount*$packageInfo->discount/100);
-	
+
 	$orderId = $this->poll_model->pollPaymentInit($id,$amount,$package);
 	
+
 	
 	$params = array(
     'amount' => $amount,
@@ -1108,7 +1111,11 @@ function updateFilterQuestion($id,$pollId) {
 	'description' => 'Create Poll on thaipoll.com #orderId:'.$orderId
 	);
 
-	$response = $this->merchant->purchase($params);
+	
+	
+
+	$response =@ $this->merchant->purchase($params);
+
 
 	}
 	
