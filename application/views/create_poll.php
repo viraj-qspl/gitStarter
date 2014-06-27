@@ -126,15 +126,15 @@ if ($action == SELECT_TYPE) {
     if (trim($recordObj->getImage()) != '')
         echo "<p><img width='355' src='" . $this->config->item('base_url') . '/uploads/' . $recordObj->getImage() . "' /></p>";
     else
-        echo '<p><img alt=""  src="' . $this->config->item('base_url') . '/assets/images/default.jpg"></p>';
+        echo '<p><img width=\'355\' alt=""  src="' . $this->config->item('base_url') . '/assets/images/default.jpg"></p>';
     ?>				
 
 
                         <p><span class="graytxt">Upload image type: JPG, PNG, GIF.  Max size - 1 MB</span><br>
-    <?php echo form_input(array('name' => 'image', 'type' => 'file')); ?>
+    <?php echo form_input(array('name' => 'image', 'type' => 'file','data-validate'=>'checkFileSize','id'=>'image')); ?>
                         </p>
                         <p>
-                            <span class="character"> 100 characters left</span>
+                            <span class="character"><span id="100chars">100</span> characters left</span>
     <?php echo form_input(array('name' => 'title', 'value' => $recordObj->getTitle(), 'placeholder' => "Enter Poll title", "class" => "logininp", "data-validate" => "required")); ?>
 
                         </p>
@@ -145,12 +145,12 @@ if ($action == SELECT_TYPE) {
     ?>
                             <?php echo form_dropdown('pollCategory_id', $options, $pollCategoryId, "class='loginsel'"); ?>  		  
                         </p>
-                        <p> <span class="character"> 140 characters left</span>
+                        <p> <span class="character"> <span id="140chars">140</span> characters left</span>
                             <textarea name="descp" data-validate="required" value="<?php echo $recordObj->getDescp(); ?>" placeholder="Enter Poll description" class="logintext"></textarea>
                         </p>
     <?php
-    if (trim($recordObj->getImage()) != '')
-        echo form_hidden('upl_image', $recordObj->getImage());
+    
+        echo form_hidden('upl_image', trim($recordObj->getImage()));
 
     if (trim($recordObj->getPoll_type()) != '') {
         $poll_type = $recordObj->getPoll_type();
@@ -227,6 +227,7 @@ if ($action == SELECT_TYPE) {
 
                     <p>&nbsp;
                         <input type="hidden" name="num_questions" id="num_questions" value="<?php echo count($questions); ?>"/>
+						<input type="hidden" name="skip_questions" id="skip_questions" value="<?php echo count($skip_questions); ?>"/>
                     </p>
                     <h3>Skip flow logic</h3>
                     <p><a href="javascript:void(0)" name='add_skip_logic' id='add_skip_logic' onClick='addSkipLogic("<?php echo $poll_id; ?>")'><img align="absmiddle" alt="" src="<?php echo $this->config->item('base_url') ?>/assets/images/add.png"> &nbsp; Add Skip flow logic</a></p>
@@ -271,7 +272,7 @@ if ($action == SELECT_TYPE) {
                 <div class="filterpage custinput">
                     <h3>Questions</h3>
                     <p>
-            <?php echo form_input(array('name' => 'question', 'id' => 'question', 'class' => 'logininp', 'placeholder' => 'Enter your question here', "data-validate" => "required,checkOptCount")); ?>
+            <?php echo form_input(array('name' => 'question', 'id' => 'question', 'class' => 'logininp', 'placeholder' => 'Enter your question here', "data-validate" => "required,checkOptCount,checkDuplicate")); ?>
                     </p>
                     <h3>Answer is required</h3>
                     <p>
@@ -425,6 +426,7 @@ if ($action == SELECT_TYPE) {
                 </div>
                 <p><!--a href="#" class="bluebtn">Preview</a> &nbsp; --><?php echo form_submit(array('name' => 'question_submit', 'value' => 'Save', 'class' => 'bluebtn')); ?></p>
                                                 <?php
+												echo form_hidden(array('question_id' => ''));
                                                 echo form_hidden(array('poll_id' => $this->uri->segment(4)));
                                                 echo form_hidden(array('type' => 'SINGLE'));
                                                 echo form_close();
@@ -455,7 +457,7 @@ if ($action == SELECT_TYPE) {
                 <div class="filterpage custinput">
                     <h3>Questions</h3>
                     <p>
-    <?php echo form_input(array('name' => 'question', 'id' => 'question', 'class' => 'logininp', 'placeholder' => 'Enter your question here', 'value' => $questionInfo->question, 'data-validate' => 'required,checkOptCount')); ?>
+    <?php echo form_input(array('name' => 'question', 'id' => 'question', 'class' => 'logininp', 'placeholder' => 'Enter your question here', 'value' => $questionInfo->question, 'data-validate' => 'required,checkOptCount,checkDuplicate')); ?>
                     </p>
                     <h3>Answer is required</h3>
                     <p>
@@ -740,6 +742,7 @@ if ($action == SELECT_TYPE) {
                 </div>
                 <p><!--a href="#" class="bluebtn">Preview</a> &nbsp; --><?php echo form_submit(array('name' => 'question_submit', 'value' => 'Save', 'class' => 'bluebtn')); ?></p>
                                                 <?php
+												 echo form_hidden(array('question_id' => $this->uri->segment(5)));
                                                 echo form_hidden(array('type' => $questionInfo->type));
                                                 echo form_hidden(array('poll_id' => $this->uri->segment(4)));
                                                 echo form_close();

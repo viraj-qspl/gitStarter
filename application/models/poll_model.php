@@ -1211,9 +1211,49 @@ public function updateSkipLogic($id,$question,$answers,$dependentQuestions) {
 	
 	}
 	
+	function wbSavePollDetails($userId,$pollTitle,$pollDescription,$pollCategoryId){
+	
+		$flag = $this->db->insert($this->config->item('tbl_poll','dbtables'),array('user_id'=>$userId,'title'=>$pollTitle,'descp'=>$pollDescription,'poll_category_id'=>$pollCategoryId));
+	
+		if($flag)
+			return $this->db->insert_id();
+		else
+			return false;
+	
+	}
+	
+	function wbSavePollImage($pollId,$pollImageName){
+		
+		$this->db->where('id',$pollId);
+		$this->db->update($this->config->item('tbl_poll','dbtables'),array('image'=>$pollImageName));
+		
+		
+		
+		if($this->db->affected_rows() > 0)
+			return true;
+		else
+			return false;
+		
+	}
 	
 	
+	public function checkQuestion($pollId,$question,$question_id){
 	
+		$this->db->select();
+		$this->db->from($this->config->item('tbl_pollQuestion','dbtables'));
+		if(trim($question_id) != '')
+			$this->db->where('id != ',$question_id);
+		$this->db->where('poll_id',$pollId);
+		$this->db->where('question',trim($question));
+		$resource = $this->db->get();
+		
+		if($resource->num_rows() > 0)
+			return true;
+		else
+			return false;
+			
+		}	
+
 }	
 	
 /*end of file*/	

@@ -14,6 +14,7 @@
         <script src="<?php echo $this->config->item('base_url') . '/assets/' ?>js/jquery-1.7.2.min.js" type="text/javascript" ></script>
         <script defer src="<?php echo $this->config->item('base_url') . '/assets/' ?>js/jquery.flexslider.js"></script>
 		<script src="<?php echo $this->config->item('base_url'); ?>/assets/js/verify.notify.min.js" type="text/javascript"></script>
+		<script src="<?php echo $this->config->item('base_url'); ?>/assets/js/jquery.form.js" type="text/javascript"></script>
 		
         <script src="<?php echo $this->config->item('base_url') . '/assets/' ?>js/jquery.popupoverlay.js"></script>
         <script src="<?php echo $this->config->item('base_url') . '/assets/' ?>js/jquery.placeholder.js" type="text/javascript"></script>

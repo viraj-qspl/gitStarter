@@ -129,7 +129,7 @@
 			
 			$start = $value->answer;
 			$end = $completePollDetails[$k]->answer;
-			echo form_input(array('name'=>'mimmax','placeholder'=>'Enter a value between '.$start.' and '.$end,'class'=>'logininp'));
+			echo form_input(array('name'=>'mimmax','placeholder'=>'Enter a value between '.$start.' and '.$end,'class'=>'logininp','style'=>'margin-bottom:30px'));
 		
 		
 		}

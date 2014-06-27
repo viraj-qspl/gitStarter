@@ -362,7 +362,7 @@ class Poll extends CI_Controller {
 
 			case 'ADD_TYPE' :						// Choose Add question or add dependency		
 			$action = 'add_type';				
-			$viewArr['viewArr'] = array('action'=>$action,'poll_id'=>$id,'skips'=>$this->poll_model->getSkipLogics($id),'questions'=>$this->poll_model->getPollQuestions($id));
+			$viewArr['viewArr'] = array('action'=>$action,'poll_id'=>$id,'skips'=>$this->poll_model->getSkipLogics($id),'questions'=>$this->poll_model->getPollQuestions($id),'skip_questions' => $this->poll_model->getDepQuestion($id));
 			$viewArr['viewPage'] = 'create_poll';
 			$this->load->view('layout',$viewArr);
 			break;	
@@ -548,6 +548,11 @@ class Poll extends CI_Controller {
 	function save()
 	{		
 
+		if(isset($_POST['ajax_upload'])){
+				$this->doUpload2();
+			return;
+		}
+	
 		// Load form validation library 
 		$this->load->library('form_validation');
 		
@@ -691,6 +696,53 @@ class Poll extends CI_Controller {
 		return true;
 	}
 }
+
+
+
+
+	 function doUpload2() {
+	if(trim($_FILES['image']['name']) != ''){
+		
+		$errorMessage = '';
+		$imaegName = '';
+		$config['upload_path'] = 'uploads/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = '10000';
+	    //$config['max_width']  = '1024';
+		//$config['max_height']  = '768';
+		$config['overwrite'] = FALSE;
+		$config['encrypt_name'] = FALSE;
+		$config['remove_spaces'] = TRUE;
+		if ( ! is_dir($config['upload_path']) ) die("THE UPLOAD DIRECTORY DOES NOT EXIST");
+		$this->load->library('upload', $config);
+		if ( ! $this->upload->do_upload('image'))
+		{
+		  $errorMessage = $this->upload->display_errors();	  	 
+		}
+		else{
+			$upload_data    = $this->upload->data();
+			$imageName = $upload_data['file_name'];
+		}
+	}
+	else{
+		$errorMessage = "";
+	}
+
+	if($errorMessage==''){
+		echo json_encode(array('imageName'=>$imageName,'error'=>0));
+	}else {
+		echo json_encode(array('errorMessage'=>$errorMessage,'error'=>1));
+	}
+}
+
+
+
+
+
+
+
+
+
 
 	// Function to save a question that has just been submitrted via form
 	// Validations will be javascript based
@@ -1167,7 +1219,21 @@ function updateFilterQuestion($id,$pollId) {
 	
 	}
 
-
+	public function checkQuestion(){
+	
+		
+		$question_id = $this->input->post('question_id');
+		$question = $this->input->post('question');
+		$pollId = $this->input->post('pollId');
+		
+		$duplicate = $this->poll_model->checkQuestion($pollId,$question,$question_id);
+		
+		if($duplicate)
+			echo json_encode(array('response'=>1));
+		else
+			echo json_encode(array('response'=>0));
+	
+	}
 
 
 

@@ -991,6 +991,7 @@ class Api extends CI_Controller {
         }
     }
     
+  // Send the Poll Category List to the User on the App 	
   function getpollCategoryList() {
         //instantiate JSON obj
         $json = new $this->services_json;
@@ -1024,7 +1025,7 @@ class Api extends CI_Controller {
         exit;
     }
 	
-	
+	// Send the Poll Package List to the User on the App
 	  function getpollPackageList() {
         //instantiate JSON obj
         $json = new $this->services_json;
@@ -1060,7 +1061,7 @@ class Api extends CI_Controller {
         exit;
     }	
 	
-	
+   // Send all teh visibilty params (age, gender, location, etc ) to the user on the app to set the visibility while creating a poll.	
 	function getVisibilityList() {
 	
 		//instantiate JSON obj
@@ -1218,10 +1219,6 @@ class Api extends CI_Controller {
 		
 		}
 		
-	
-
-		
-		
 		$pollVisibilityArray2 = array();
 		
 		foreach($pollVisibilityArray as $key=>$value){
@@ -1245,5 +1242,135 @@ class Api extends CI_Controller {
         exit;
 	
 	}
+	
+	
+	
+	// Save the first poll Details
+	
+	   function savePollDetails() {
+        //instantiate JSON obj
+        $json = new $this->services_json;
+		$this->load->model('poll_model');
+		
+		
+		$message = '';
+
+        $userId = "";
+		$pollTitle = "";
+		$pollCategoryId = "";
+		$pollDescription = "";
+		
+		
+
+        //data is sent using json array hence input is read using post and not using headers
+        if (!isset($_POST['userId']) || (isset($_POST['userId']) && $_POST['userId'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'UserId absent')));
+            exit;
+        } else {
+            $userId = trim($_POST['userId']);
+        }
+		
+        if (!isset($_POST['pollTitle']) || (isset($_POST['pollTitle']) && $_POST['pollTitle'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'Please enter the Poll Title')));
+            exit;
+        } else {
+            $pollTitle = trim($_POST['pollTitle']);
+        }		
+		
+        if (!isset($_POST['pollDescription']) || (isset($_POST['pollDescription']) && $_POST['pollDescription'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'Please enter the Poll Description')));
+            exit;
+        } else {
+            $pollDescription = trim($_POST['pollDescription']);
+        }	
+		
+		
+        if (!isset($_POST['pollCategoryId']) || (isset($_POST['pollCategoryId']) && $_POST['pollCategoryId'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'Please enter the Poll Title')));
+            exit;
+        } else {
+            $pollCategoryId = trim($_POST['pollCategoryId']);
+        }		
+		
+		
+		$id = $this->poll_model->wbSavePollDetails($userId,$pollTitle,$pollCategoryId,$pollDescription);
+		
+		if($id)
+			echo $json->encode(array("response" => array("errorCode" => "0", "message" => 'Poll Successfully Inserted','pollId'=>$id)));
+		else
+			echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'There was an error saving the Poll')));
+    }
+	
+	
+	
+	
+	// Save the first poll Image
+	
+	   function savePollImage() {
+        //instantiate JSON obj
+        $json = new $this->services_json;
+		$this->load->model('poll_model');
+		
+
+		$message = "";
+		$pollId = "";
+		$pollImageName = "";
+		$pollImageBinaryData = "";
+		
+
+
+		
+		
+
+        //data is sent using json array hence input is read using post and not using headers
+        if (!isset($_POST['pollId']) || (isset($_POST['pollId']) && $_POST['pollId'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'PollId absent')));
+            exit;
+        } else {
+            $pollId = trim($_POST['pollId']);
+        }
+		
+        if (!isset($_POST['pollImageName']) || (isset($_POST['pollImageName']) && $_POST['pollImageName'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'Poll Image name is absent')));
+            exit;
+        } else {
+            $pollImageName = trim($_POST['pollImageName']);
+        }		
+		
+         if (!isset($_POST['pollImageBinaryData']) || (isset($_POST['pollImageBinaryData']) && $_POST['pollImageBinaryData'] == '') ) {
+            echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'Poll Image Binary Data is not present ')));
+            exit;
+        } else {
+            $pollImageBinaryData = base64_decode(trim($_POST['pollImageBinaryData']));
+        }	
+
+		$fileopen = fopen($this->config->item('base_path').'/uploads/'.$pollImageName,"w+");
+		fwrite($fileopen,$pollImageBinaryData);
+		fclose($fileopen);
+
+		$flag = $this->poll_model->wbSavePollImage($pollId,$pollImageName);
+		
+		if($flag)
+			echo $json->encode(array("response" => array("errorCode" => "0", "message" => 'Poll Image Successfully Saved')));
+		else
+			echo $json->encode(array("response" => array("errorCode" => "1", "message" => 'There was an error saving the Poll Image')));
+			
+    }	
+	
+	function savePollQuestions(){
+        //instantiate JSON obj
+        $json = new $this->services_json;
+		$this->load->model('poll_model');	
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
 	
 }
